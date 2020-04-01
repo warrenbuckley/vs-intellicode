@@ -1,0 +1,8 @@
+﻿{
+  "language": "cplusplus",
+  "regex": "(vcxproj|cmakelists|CMakeLists)",
+  "extractor": "CppCustomModelExtractorDriver.exe",
+  "type": "exe",
+  "OS": [ "Windows" ],
+  "requirements": { "Path": [ "cl.exe", "intellicode.dll", "cmake.exe" ] }
+}
