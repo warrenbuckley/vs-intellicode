@@ -9,6 +9,7 @@
     "eslint": "eslint src --ext ts",
     "format": "prettier --write \"src/**/*.{ts,tsx}\"",
     "pack": "ncc build",
+    "ci-checks": "npm ci && npm run build && npm run eslint",
     "pre-release": "npm prune --production",
     "all": "npm i && npm run build && npm run format && npm run eslint && npm run pack"
   },
