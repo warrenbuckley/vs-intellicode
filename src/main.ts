@@ -28,7 +28,15 @@ async function run(): Promise<void> {
             );
             return;
         }
-        const directory = process.env.GITHUB_WORKSPACE;
+
+        let directory = process.env.GITHUB_WORKSPACE;
+        const overrideDirectory = core.getInput("directory");
+
+        // Null comparison in typescript is similar to IsNullOrWhiteSpace in C#.
+        if(overrideDirectory != null){
+            // If directory was overriden, we override that variable.
+            directory = overrideDirectory;
+        }
 
         // Validate directory
         if (directory == null) {
@@ -44,6 +52,9 @@ async function run(): Promise<void> {
             }
         }
 
+
+        
+
         const args = [
             "train",
             "--directory",
@@ -56,6 +67,10 @@ async function run(): Promise<void> {
 
         const config = core.getInput("config");
         const platform = core.getInput("platform");
+
+
+        // Setting process to be CI for multiple core usage.
+        process.env.CPP_EXTRACT_MODE = "CI";
 
         if (config && platform) {
             args.push("--configuration", config, "--platform", platform);
