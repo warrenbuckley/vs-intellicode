@@ -2,7 +2,7 @@
 
 # Automate code completions tailored to your codebase with IntelliCode Team completions
 
-Using this GitHub Action, [Visual Studio IntelliCode](https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.VSIntelliCode) automate training a Machine Learning completions model as part of your CI workflow to provide in-line, contextually-rich completion suggestions based on your own types in C# and C++.
+Using this GitHub Action, [Visual Studio IntelliCode](https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.VSIntelliCode) automate training a machine learning completions model as part of your CI workflow to provide in-line, contextually-rich completion suggestions based on your own types in C# and C++.
 
 Visual Studio IntelliCode saves you time by putting what you’re most likely to use at the top of your completion list. IntelliCode recommendations are based on thousands of open source projects on GitHub each with over 100 stars. When combined with the context of your code, the completion list is tailored to promote common practices. To get IntelliCode's starred completion suggestions for your own types, or other types not commonly found in open source, use [IntelliCode Team completions](https://aka.ms/vsic-teamcompletions-quickstart).
 
@@ -54,6 +54,7 @@ jobs:
 | Name          | Type              | Description  |
 | ------------- |:-----------------:|:------------:|
 | pat           | string (required) | The personal access token linked to your account. Use secrets to set this value. |
+| directory     | string (optional) | Use if you wish to override the directory where the repo to be trained is located at. |
 | platform      | string (optional) | Only for C++ repositories. Sets the platform for the C++ build (ARM, Any CPU, etc). |
 | config        | string (optional) | Only for C++ repositories. Sets the configuration for the C++ build (Debug, Release). |
 
