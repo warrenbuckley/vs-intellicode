@@ -10,25 +10,6 @@ async function run(): Promise<void> {
         const cliPath = path.normalize(`${__dirname}\\..\\node_modules\\@vsintellicode\\cli\\CLI`);
         core.addPath(cliPath);
 
-        // Retrieve the PAT Token and the github workspace.
-        // Get required input arguments.
-        let patToken: string = "";
-        try {
-            // When 'required' is sent as true, git/core will
-            // throw when the argument is not found.
-            patToken = core.getInput("pat", { required: true });
-
-            // If the retrieved pat is an empty string, we throw to print the warning end return.
-            if (!patToken) {
-                throw Error;
-            }
-        } catch (error) {
-            core.warning(
-                `Could not find personal access token (PAT) in configuration. Please provide one as a step argument. For instructions on getting a PAT visit ${Links.PAT_TOKEN}`,
-            );
-            return;
-        }
-
         let directory = process.env.GITHUB_WORKSPACE;
         const overrideDirectory = core.getInput("directory");
 
@@ -52,15 +33,11 @@ async function run(): Promise<void> {
             }
         }
 
-
-        
-
         const args = [
             "train",
             "--directory",
             directory,
-            "--pat-token",
-            patToken,
+            "--anonymous",
             "--verbosity",
             "n", // Verbosity level.
         ];
