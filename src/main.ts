@@ -13,14 +13,14 @@ async function run(): Promise<void> {
         let directory = process.env.GITHUB_WORKSPACE;
         const overrideDirectory = core.getInput("directory");
 
-        // Null comparison in typescript is similar to IsNullOrWhiteSpace in C#.
-        if(overrideDirectory != null){
+        if (overrideDirectory) {
             // If directory was overriden, we override that variable.
+            core.info(`overriding directory with given path: '${overrideDirectory}'`);
             directory = overrideDirectory;
         }
 
         // Validate directory
-        if (directory == null) {
+        if (!directory) {
             // If the environment variable is not set, this could mean that the
             // github action is running on a different environment other than
             // the one github provides.
@@ -29,7 +29,9 @@ async function run(): Promise<void> {
             if (!fs.existsSync(directory)) {
                 // If the workspace directory doesn't exists we can't train anything.
                 // An error is thrown to notice the reason of failure.
-                throw Error("Workspace directory doesn't exists in the file system.");
+                throw Error(
+                    `Workspace directory '${directory}' doesn't exists in the file system.`,
+                );
             }
         }
 
@@ -44,7 +46,6 @@ async function run(): Promise<void> {
 
         const config = core.getInput("config");
         const platform = core.getInput("platform");
-
 
         // Setting process to be CI for multiple core usage.
         process.env.CPP_EXTRACT_MODE = "CI";
