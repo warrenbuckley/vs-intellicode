@@ -2,9 +2,6 @@ name: 'IntelliCode Team Model Training'
 description: 'Github Action used to access IntelliCode services on CI builds.'
 author: 'Microsoft'
 inputs:
-  pat:
-    description: 'The IntelliCode personal access token. Visit https://aka.ms/vsic-github#accessing_a_personal_access_token for more information.'
-    required: true
   platform:
     description: 'Only for C++ extractions. Sets the platform for the C++ build (ARM, Any CPU, etc).'
     required: false
