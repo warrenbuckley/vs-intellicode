@@ -974,32 +974,21 @@ const core = __importStar(__webpack_require__(470));
 const exec = __importStar(__webpack_require__(986));
 const fs = __importStar(__webpack_require__(747));
 const path = __importStar(__webpack_require__(622));
-const links_1 = __webpack_require__(937);
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             // Add the CLI to the environment path.
             const cliPath = path.normalize(__webpack_require__.ab + "CLI");
             core.addPath(cliPath);
-            // Retrieve the PAT Token and the github workspace.
-            // Get required input arguments.
-            let patToken = "";
-            try {
-                // When 'required' is sent as true, git/core will
-                // throw when the argument is not found.
-                patToken = core.getInput("pat", { required: true });
-                // If the retrieved pat is an empty string, we throw to print the warning end return.
-                if (!patToken) {
-                    throw Error;
-                }
+            let directory = process.env.GITHUB_WORKSPACE;
+            const overrideDirectory = core.getInput("directory");
+            if (overrideDirectory) {
+                // If directory was overriden, we override that variable.
+                core.info(`overriding directory with given path: '${overrideDirectory}'`);
+                directory = overrideDirectory;
             }
-            catch (error) {
-                core.warning(`Could not find personal access token (PAT) in configuration. Please provide one as a step argument. For instructions on getting a PAT visit ${links_1.Links.PAT_TOKEN}`);
-                return;
-            }
-            const directory = process.env.GITHUB_WORKSPACE;
             // Validate directory
-            if (directory == null) {
+            if (!directory) {
                 // If the environment variable is not set, this could mean that the
                 // github action is running on a different environment other than
                 // the one github provides.
@@ -1009,20 +998,21 @@ function run() {
                 if (!fs.existsSync(directory)) {
                     // If the workspace directory doesn't exists we can't train anything.
                     // An error is thrown to notice the reason of failure.
-                    throw Error("Workspace directory doesn't exists in the file system.");
+                    throw Error(`Workspace directory '${directory}' doesn't exists in the file system.`);
                 }
             }
             const args = [
                 "train",
                 "--directory",
                 directory,
-                "--pat-token",
-                patToken,
+                "--anonymous",
                 "--verbosity",
                 "n",
             ];
             const config = core.getInput("config");
             const platform = core.getInput("platform");
+            // Setting process to be CI for multiple core usage.
+            process.env.CPP_EXTRACT_MODE = "CI";
             if (config && platform) {
                 args.push("--configuration", config, "--platform", platform);
             }
@@ -1552,20 +1542,6 @@ function isUnixExecutable(stats) {
 /***/ (function(module) {
 
 module.exports = require("fs");
-
-/***/ }),
-
-/***/ 937:
-/***/ (function(__unusedmodule, exports) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var Links;
-(function (Links) {
-    Links["PAT_TOKEN"] = "https://aka.ms/vsic-github#accessing_a_personal_access_token";
-})(Links = exports.Links || (exports.Links = {}));
-
 
 /***/ }),
 

@@ -4,5 +4,5 @@
   "extractor": "CppCustomModelExtractorDriver.exe",
   "type": "exe",
   "OS": [ "Windows" ],
-  "requirements": { "Path": [ "cl.exe", "intellicode.dll", "cmake.exe" ] }
+  "requirements": { "Path": [ "cl.exe", "cmake.exe", "isense_model_extractor.exe" ] }
 }
