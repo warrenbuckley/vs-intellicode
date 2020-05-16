@@ -1,4 +1,4 @@
-name: 'IntelliCode Team Model Training'
+name: 'IntelliCode Team Completions'
 description: 'Github Action used to access IntelliCode services on CI builds.'
 author: 'Microsoft'
 inputs:
