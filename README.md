@@ -1,10 +1,8 @@
 <img src="./images/IntelliCodeLogo.png"> 
 
-# Automates code completions tailored to your codebase with IntelliCode Team completions
+# Automate code completions tailored to your codebase with IntelliCode Team completions
 
-Using this GitHub Action, [Visual Studio IntelliCode](https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.VSIntelliCode) automate training a machine learning completions model as part of your CI workflow to provide in-line, contextually-rich completion suggestions based on your own types in C# and C++.
-
-Visual Studio IntelliCode saves you time by putting what you’re most likely to use at the top of your completion list. IntelliCode recommendations are based on thousands of open source projects on GitHub each with over 100 stars. When combined with the context of your code, the completion list is tailored to promote common practices. To get IntelliCode's starred completion suggestions for your own types, or other types not commonly found in open source, use [IntelliCode Team completions](https://aka.ms/vsic-teamcompletions-quickstart).
+[Visual Studio IntelliCode](https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.VSIntelliCode) saves you time by putting what you’re most likely to use at the top of your completion list. IntelliCode recommendations are based on thousands of open source projects on GitHub each with over 100 stars. When combined with the context of your code, the completion list is tailored to promote common practices. To get IntelliCode's starred completion suggestions for your own types, or other types not commonly found in open source, use [IntelliCode Team completions](https://aka.ms/vsic-teamcompletions-quickstart).
 
 With this GitHub Action, you can keep your Team completion suggestions up-to-date with your repository’s latest commit by automating the Team completions model training. 
 
