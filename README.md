@@ -31,7 +31,9 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v1 # Project needs to be checked out for us be able to analyze the code.
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0 # We need to fetch the entire Git history in order to verify the authenticity.
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
